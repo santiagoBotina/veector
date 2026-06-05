@@ -1,3 +1,5 @@
+# Veector - AI-Powered Customer Intelligence Platform
+
 # 001 - Project Description
 
 ---
