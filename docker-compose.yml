@@ -1,0 +1,3 @@
+include:
+  - path: infrastructure/airflow/compose.yaml
+  - path: infrastructure/s3/compose.yml

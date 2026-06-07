@@ -1,2 +1,8 @@
 .idea/
-datasets/
+sources/
+
+# Airflow
+infrastructure/airflow/logs
+
+# S3 (minio)
+infrastructure/s3/minio
