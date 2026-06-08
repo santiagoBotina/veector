@@ -1,15 +1,21 @@
-# Run
-run:
-	docker compose up -d
+up:
+	docker compose \
+		-f infrastructure/airflow/compose.yaml \
+		-f infrastructure/s3/compose.yml \
+		--env-file .env \
+		up -d
 
-stop:
-	docker compose down
+down:
+	docker compose \
+		-f infrastructure/airflow/compose.yaml \
+		-f infrastructure/s3/compose.yml \
+		--env-file .env \
+		down --volumes --remove-orphans
 
 # --- Airflow
 airflow-destroy:
-	cd ./infrastructure/airflow && docker compose down --volume --rmi all
+	docker compose -f infrastructure/airflow  down --volume --rmi all
 
 # -- S3 (minio)
-minio-run:
-	cd ./infrastructure/s3 && docker compose up -d
-
+s3-run:
+	docker compose -f infrastructure/s3/compose.yml --env-file .env up -d

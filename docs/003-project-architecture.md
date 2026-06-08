@@ -83,3 +83,29 @@ Support Agent
 |                 Streamlit UI                      |
 +--------------------------------------------------+
 ```
+
+## Lakehouse Structure
+
+```
+"bronze/crm/"
+"bronze/orders/"
+"bronze/marketing/"
+"bronze/support/"
+"bronze/communications/"
+
+"silver/customers/"
+"silver/orders/"
+"silver/marketing/"
+"silver/support/"
+
+"silver_ai/communications_clean/"
+"silver_ai/chunks/"
+"silver_ai/sentiment/"
+"silver_ai/topics/"
+"silver_ai/entities/"
+
+"gold/customer_360/"
+"gold/customer_ltv/"
+"gold/marketing_analytics/"
+"gold/support_analytics/"
+```
