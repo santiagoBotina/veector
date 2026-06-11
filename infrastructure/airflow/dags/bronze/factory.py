@@ -20,18 +20,11 @@ def make_bronze_dag(
     def pipeline():
 
         @task()
-        def extract() -> list:
+        def ingest() -> None:
             from infrastructure.s3.lib.s3_client import S3Client
             job = job_class(S3Client, sources[source_name])
-            return job.extract().to_dicts()
+            job.run()
 
-        @task()
-        def load(records: list) -> None:
-            from infrastructure.s3.lib.s3_client import S3Client
-            job = job_class(S3Client, sources[source_name])
-            job.load(records)
-
-        extracted_records = extract()
-        load(extracted_records)
+        ingest()
 
     return pipeline
