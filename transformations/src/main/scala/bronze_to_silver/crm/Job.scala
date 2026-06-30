@@ -1,7 +1,10 @@
 package com.veector
 package bronze_to_silver.crm
 
-import com.veector.shared.{SparkFactory, Reader, Writer}
+import shared.enums.DataSource
+
+import com.veector.shared.{Reader, SparkFactory, Writer}
+import io.github.cdimascio.dotenv.Dotenv
 
 object Job {
 
@@ -10,12 +13,12 @@ object Job {
       SparkFactory.create("crm-bronze-to-silver")
 
     val bronzeDf =
-      Reader.csv(spark, "lalala")
+      Reader.fromBronze(spark, DataSource.CRM)
 
     val silverDf =
       Transformer.transform(bronzeDf)
 
-    Writer.write(silverDf, "lalala2")
+    Writer.toSilver(silverDf, DataSource.CRM)
 
     spark.stop()
   }
