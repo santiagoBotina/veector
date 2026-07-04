@@ -2,6 +2,7 @@ up:
 	docker compose \
 		-f infrastructure/airflow/compose.yaml \
 		-f infrastructure/s3/compose.yml \
+		-f infrastructure/spark/compose.yml \
 		--env-file .env \
 		up -d
 
@@ -9,6 +10,7 @@ down:
 	docker compose \
 		-f infrastructure/airflow/compose.yaml \
 		-f infrastructure/s3/compose.yml \
+		-f infrastructure/spark/compose.yml \
 		--env-file .env \
 		down --volumes --remove-orphans
 
