@@ -46,7 +46,6 @@ def make_silver_dag(
             bash_command=f"""
             spark-submit \
               --master spark://spark-master:7077 \
-              --conf spark.sql.parquet.enableVectorizedReader=false \
               --conf spark.hadoop.fs.s3a.endpoint={s3_endpoint} \
               --conf spark.hadoop.fs.s3a.aws.credentials.provider=org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider \
               --conf spark.hadoop.fs.s3a.access.key={s3_access_key} \

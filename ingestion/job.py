@@ -3,6 +3,8 @@ from datetime import datetime
 from dataclasses import dataclass
 from typing import Callable
 import polars as pl
+import pyarrow as pa
+import pyarrow.parquet as pq
 
 
 @dataclass
@@ -53,8 +55,9 @@ class IngestJob:
                 yield lf.slice(offset, batch_size).collect()
 
     def _upload_batch(self, df: pl.DataFrame, s3_key: str):
+        table = df.to_arrow()
         buffer = io.BytesIO()
-        df.write_parquet(buffer, compression="snappy")
+        pq.write_table(table, buffer, compression="snappy")
         buffer.seek(0)
         self.s3_client.upload(buffer, s3_key)
 
