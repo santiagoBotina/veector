@@ -54,7 +54,7 @@ class IngestJob:
 
     def _upload_batch(self, df: pl.DataFrame, s3_key: str):
         buffer = io.BytesIO()
-        df.write_parquet(buffer)
+        df.write_parquet(buffer, compression="snappy")
         buffer.seek(0)
         self.s3_client.upload(buffer, s3_key)
 
