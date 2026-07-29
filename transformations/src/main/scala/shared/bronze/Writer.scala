@@ -1,7 +1,8 @@
 package com.veector
-package shared
+package shared.bronze
 
 import shared.enums.DataSource
+
 import org.apache.spark.sql.DataFrame
 
 object Writer {
