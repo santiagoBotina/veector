@@ -55,7 +55,9 @@ object Reader {
         .parquet(s"$filePath/dlq/${System.currentTimeMillis()}")
     }
 
-    spark.createDataFrame(verifiedDf.rdd, targetSchema)
+    verifiedDf.select(
+      targetSchema.fields.map(f => col(f.name).cast(f.dataType).as(f.name)): _*
+    )
   }
 
   def jsonl(spark: SparkSession, filePath: String): DataFrame = {

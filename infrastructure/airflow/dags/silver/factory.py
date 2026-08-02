@@ -5,7 +5,7 @@ from airflow.operators.bash import BashOperator
 
 PROJECT_ROOT = Path("/opt/airflow/project")
 ENV_PATH = PROJECT_ROOT / ".env"
-JAR_PATH = PROJECT_ROOT / "transformations/target/out/jvm/scala-2.13.16/transformations/veector-transformations.jar"
+JAR_PATH = PROJECT_ROOT / "processing/target/out/jvm/scala-2.12.18/processing/veector-processing.jar"
 
 
 def _load_env() -> dict:

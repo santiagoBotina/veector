@@ -1,7 +1,7 @@
 package com.veector
 package bronze_to_silver.crm
 
-import org.apache.spark.sql.types.{BooleanType, DateType, DoubleType, StringType, StructField, StructType, TimestampType}
+import org.apache.spark.sql.types._
 
 object Schema {
   val CRMSchema: StructType = StructType(Seq(
