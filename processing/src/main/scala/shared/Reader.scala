@@ -13,22 +13,22 @@ import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object Reader {
-  private val bronzeBasePath: String = "s3a://veector-lakehouse/bronze";
+  val bronzeBasePath: String = "s3a://veector-lakehouse/bronze"
 
-  def fromBronze(spark: SparkSession, dataSource: DataSource): DataFrame = {
+  def fromBronze(spark: SparkSession, dataSource: DataSource, basePath: String = bronzeBasePath): DataFrame = {
     Logger.log(s"Starting reading from bronze layer - datasource: $dataSource")
 
     val (path, schema) = dataSource match {
       case DataSource.CRM =>
-        (s"$bronzeBasePath/crm", CrmSchemaObj.CRMSchema)
+        (s"$basePath/crm", CrmSchemaObj.CRMSchema)
       case DataSource.CustomerCommunications =>
-        (s"$bronzeBasePath/communications", CommSchemaObj.CustomerCommunicationsSchema)
+        (s"$basePath/communications", CommSchemaObj.CustomerCommunicationsSchema)
       case DataSource.MarketingEvents =>
-        (s"$bronzeBasePath/marketing", MarketingSchemaObj.MarketingEventsSchema)
+        (s"$basePath/marketing", MarketingSchemaObj.MarketingEventsSchema)
       case DataSource.Orders =>
-        (s"$bronzeBasePath/orders", OrdersSchemaObj.OrdersSchema)
+        (s"$basePath/orders", OrdersSchemaObj.OrdersSchema)
       case DataSource.SupportTickets =>
-        (s"$bronzeBasePath/support", SupportSchemaObj.SupportTicketsSchema)
+        (s"$basePath/support", SupportSchemaObj.SupportTicketsSchema)
     }
 
     readAndValidateParquet(spark, path, schema)

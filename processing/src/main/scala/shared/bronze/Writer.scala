@@ -6,16 +6,16 @@ import shared.enums.DataSource
 import org.apache.spark.sql.DataFrame
 
 object Writer {
-  val silverBasePath: String = "s3a://veector-lakehouse/silver";
+  val silverBasePath: String = "s3a://veector-lakehouse/silver"
 
-  def toSilver(df: DataFrame, dataSource: DataSource): Unit = {
+  def toSilver(df: DataFrame, dataSource: DataSource, basePath: String = silverBasePath): Unit = {
     dataSource match
     {
-      case DataSource.CRM => write(df, s"$silverBasePath/crm")
-      case DataSource.CustomerCommunications => write(df, s"$silverBasePath/communications")
-      case DataSource.MarketingEvents => write(df, s"$silverBasePath/marketing")
-      case DataSource.Orders => write(df, s"$silverBasePath/orders")
-      case DataSource.SupportTickets => write(df, s"$silverBasePath/support")
+      case DataSource.CRM => write(df, s"$basePath/crm")
+      case DataSource.CustomerCommunications => write(df, s"$basePath/communications")
+      case DataSource.MarketingEvents => write(df, s"$basePath/marketing")
+      case DataSource.Orders => write(df, s"$basePath/orders")
+      case DataSource.SupportTickets => write(df, s"$basePath/support")
     }
   }
 
