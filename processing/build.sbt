@@ -3,12 +3,12 @@ scalaVersion := "2.13.16"
 val sparkVersion = "3.5.3"
 val hadoopVersion = "3.3.4"
 
-assembly / assemblyJarName := "veector-transformations.jar"
+assembly / assemblyJarName := "veector-processing.jar"
 
 lazy val root = (project in file("."))
   .enablePlugins(AssemblyPlugin)
   .settings(
-    name := "transformations",
+    name := "processing",
     idePackagePrefix := Some("com.veector"),
     libraryDependencies ++= Seq(
       "org.apache.spark" %% "spark-core" % sparkVersion % "provided",
